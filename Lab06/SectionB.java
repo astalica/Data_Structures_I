@@ -1,12 +1,19 @@
+
+
 package Lab06;
 
 public class SectionB {
 
 	public static void main(String[] args) {
 		
-		int[] array = {2,3,3,4,2};
-		System.out.println(findPair(array));
+		int[] array = {9,6,3,4,2};
+		int[] arraySorted = {1,2,3,4,5,6,7,8,9};
 		
+		//System.out.println("A: Middle index = " + printMiddle(array));
+		//System.out.println("B: Smallest index = " + printSmallest(arraySorted));
+		//System.out.println("B: findPair(array));
+		
+		System.out.println(hasDuplicate(array));
 		
 	}
 	
@@ -26,31 +33,38 @@ public class SectionB {
 	
 	public static boolean findPair(int[] array) {
 		
-		/*
-	
-		for(int num : array) {
+		for (int i = 0; i < (array.length-1); i++) 
 			
-			if(array[num+1] < array.length) {
+			if (array[i] == array[i+1]) {
 				
-				if(array[num] == array[num+1]) {
+				return true;
+				
+			}
+		
+		return false;
+		
+		
+	}
+	
+	public static boolean hasDuplicate(int[] array) {
+		boolean duplicate = false;
+		
+		for(int i =0; i < array.length; i++) {
+			
+			for(int j = i + 1; j < array.length; j++) {
+				
+				if(array[i] == array[j]) {
 					
-					numPairs = true;
+					duplicate = true;
+					return duplicate;
 					
 				}
 				
 			}
+			
 		}
-		*/
 		
-		for (int i = 0; i < array.length; i++) 
-			if (array[i] == array[i+1]) {
-				return true;
-			}/*else {
-				return false;
-			}
-		*/
-		return false;
-		
+		return duplicate;
 		
 	}
 	
