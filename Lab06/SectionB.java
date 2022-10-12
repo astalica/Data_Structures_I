@@ -6,22 +6,38 @@ public class SectionB {
 
 	public static void main(String[] args) {
 		
-		int[] array = {9,6,3,4,2};
+		int[] array = {9,6,3,4,2,};
 		int[] arraySorted = {1,2,3,4,5,6,7,8,9};
 		
 		//System.out.println("A: Middle index = " + printMiddle(array));
 		//System.out.println("B: Smallest index = " + printSmallest(arraySorted));
 		//System.out.println("B: findPair(array));
 		
-		System.out.println(hasDuplicate(array));
-		
+		//System.out.println(printMiddle(array));
+		printMiddle(array);
+		printSmallestUnsort(array);
 	}
 	
-	public void printMiddle(int[] array) {
+	public static void printMiddle(int[] array) {
 		
 		int size = array.length;
 		int middle = (size-1)/2;
 		System.out.println(array[middle]);
+		
+	}
+	
+	public static void printSmallestUnsort(int[] array) {
+		
+		int smallest = array[0];
+		
+		for(int i = 1; i < array.length; i++) {
+			
+			if(array[i] < smallest) {
+				smallest = array[i];
+			}
+			
+		}
+		System.out.println(smallest);
 		
 	}
 	
