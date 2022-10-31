@@ -161,27 +161,46 @@ public class InvoiceView extends View
 		totalBill = new TextField();
 		grid.add(totalBill, 1, 6);
 		
+		Text errorMessage = new Text("");
 		
 		submitButton = new Button("Calculate");
 		submitButton.setOnAction(new EventHandler<ActionEvent>() {
 
     		     @Override
+    		     
     		     public void handle(ActionEvent e) {
     		    	 clearErrorMessage();
-    		    	 shirts = Double.parseDouble(shirtSales.getText());
-    		 		 pants = Double.parseDouble(pantsSales.getText());
-    		 	     ties = Double.parseDouble(tiesSales.getText());
-    		 		 shoes = Double.parseDouble(shoesSales.getText());
-    		 		 salesTax = (Double.parseDouble(salesTaxValue.getValue()))/100;
-    		 		 
-    		 		 total = ((shirts + pants + ties + shoes) * salesTax) + (shirts + pants + ties + shoes);
-    		 		 Formatter formatter = new Formatter();
-    		 		 formatter.format("%.2f", total);
-    		 		 totalBill.setText(formatter.toString());
-    		 		 formatter.close();
+    		    	if(shirtSales.getText().trim().isEmpty() == false && 
+    		    	   pantsSales.getText().trim().isEmpty() == false &&
+    		    	   tiesSales.getText().trim().isEmpty() == false  &&
+    		    	   shoesSales.getText().trim().isEmpty() == false) {
+    		    		
+    		    		 errorMessage.setText("");
+    		    		
+	    		    	 shirts = Double.parseDouble(shirtSales.getText());
+	    		 		 pants = Double.parseDouble(pantsSales.getText());
+	    		 	     ties = Double.parseDouble(tiesSales.getText());
+	    		 		 shoes = Double.parseDouble(shoesSales.getText());
+	    		 		 salesTax = (Double.parseDouble(salesTaxValue.getValue()))/100;
+	    		    	 
+	    		    	
+	    		 		 total = ((shirts + pants + ties + shoes) * salesTax) + (shirts + pants + ties + shoes);
+	    		 		 Formatter formatter = new Formatter();
+	    		 		 formatter.format("%.2f", total);
+	    		 		 totalBill.setText(formatter.toString());
+	    		 		 formatter.close();
+    		    	}else {
+    		    		
+    		    		errorMessage.setText("Error: Blank fields");
+    		    		errorMessage.setFill(Color.RED);
+    		    		
+    		    	}
 
-			     }
-     	});
+    		     	}
+    		     }
+    		     
+    		     
+     	);
 
 		cancelButton = new Button("Back");
 		cancelButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -199,9 +218,14 @@ public class InvoiceView extends View
 		btnContainer.setAlignment(Pos.CENTER);
 		btnContainer.getChildren().add(submitButton);
 		btnContainer.getChildren().add(cancelButton);
+		
+		HBox errorContainer = new HBox(100);
+		errorContainer.setAlignment(Pos.CENTER);
+		errorContainer.getChildren().add(errorMessage);
 
 		vbox.getChildren().add(grid);
 		vbox.getChildren().add(btnContainer);
+		vbox.getChildren().add(errorContainer);
 
 		return vbox;
 	}
