@@ -5,8 +5,6 @@ public class InventoryTester {
     {
         Inventory myInventory = new Inventory();
 
-        Part p1 = new Part("bolt",  "red",     7.0,   8.50, 200, 300);
-        Part p2 = new Part("bolt",  "black",   2.5,   2.00, 200, 100);
         //------------------name    color    weight   price amountInStock reOpt
         myInventory.sortedInsert
                 (new Part("bolt",  "red",     7.0,   8.50, 200, 300));		//
@@ -66,8 +64,6 @@ public class InventoryTester {
         for(int i = 0; i < myInventory.inventoryList.size(); i++) {
         	System.out.println(i +": " + myInventory.inventoryList.get(i).toString());
         }
-        
-        System.out.println(p2.compareTo(p1));
 
     }
 

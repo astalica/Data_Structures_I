@@ -7,19 +7,18 @@ public class Inventory {
 
 
 
-// need to double check this logic its 4am and i shot
+/* if size is 0, just add part
+ * else, if the part to be added is "less than" the first part in list,
+ * add part to the beginning of list.
+ * else, if the part to be added is "greater than" the last part in list,
+ * add part to the end of the list.
+ * else, loop through each part in list, while the part to be added is
+ * "greater than" the part being checked, keep going.
+ * Break when the part to be added is "less than" the part being checked
+ * and add part at that index. 
+*/
     public void sortedInsert(Part part) {
 
-    	
-       // if (inventoryList.size() != 0) {
-        //  for (int i = 0; i <= inventoryList.size()-1; i++)
-               // if (part.compareTo(inventoryList.get(i)) > 0)
-                  //  inventoryList.add(i-1, part);
-                
-                	
-        //}else {
-        	//inventoryList.add(part);
-       // }
           if(inventoryList.size() != 0) {
         	  
         	  if(part.compareTo(inventoryList.get(0)) < 0) {
@@ -38,6 +37,7 @@ public class Inventory {
         	  inventoryList.add(part);
           }
          
+    	
     }
 
     public double totalInventoryValue() {
